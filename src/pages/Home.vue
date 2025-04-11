@@ -25,7 +25,7 @@
               P2P Liqudity Flip | Удваивай капитал
             </h2>
             <div class="-translate-y-6">
-              <img src="../assets/images/bg.png" alt="background" />
+              <CoinAnimation />
               <div class="font-medium text-[#dfdfd0] text-center">
                 Tap 1000/1000
               </div>
@@ -77,6 +77,7 @@
 <script lang="ts" setup>
 import BalanceBar from "../components/BalanceBar/BalanceBar.vue";
 import ClipboardCopy from "../components/ClipboardCopy/ClipboardCopy.vue";
+import CoinAnimation from "../components/CoinAnimation/CoinAnimation.vue";
 import DailyGifts from "../components/DailyGifts/DailyGifts.vue";
 import FriendList from "../components/FriendList/FriendList.vue";
 import OrderBlock from "../components/OrderBlock/OrderBlock.vue";
