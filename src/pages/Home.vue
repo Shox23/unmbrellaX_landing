@@ -65,6 +65,7 @@
           v-for="item in mockData"
           :key="item.title"
           :title="item.title"
+          :grid-class="item.gridClass"
           :data="item.data"
           :space="item.space"
         />
@@ -86,6 +87,7 @@ import SvgIcon from "../components/ui/SvgIcon/SvgIcon.vue";
 const mockData = [
   {
     title: "Выбери готовые ордера P2P Liqudity Flip",
+    gridClass: "p2p-grid",
     data: {
       titles: ["Финансирование", "Ордеров", "Total", "Сумма ордера"],
       items: [
@@ -107,6 +109,7 @@ const mockData = [
   {
     space: "small",
     title: "Мои Ордера P2P Liqudity Flip",
+    gridClass: "my-grid",
     data: {
       titles: [
         "Сумма",

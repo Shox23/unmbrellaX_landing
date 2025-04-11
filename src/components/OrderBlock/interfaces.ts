@@ -1,6 +1,7 @@
 export interface OrderBlockProps {
   title: string;
   space?: "base" | "small";
+  gridClass: string;
   data: {
     titles: string[];
     items: P2pOrder[] | MyOrder[];
@@ -18,5 +19,5 @@ export interface MyOrder {
   amount: string;
   bonus: string;
   myFinance: string;
-  hasBtn: boolean
+  hasBtn: boolean;
 }

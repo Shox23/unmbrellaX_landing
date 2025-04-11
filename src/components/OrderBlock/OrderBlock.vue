@@ -3,16 +3,24 @@
     class="py-3 bg-[#181a20] rounded-(--rounded-base) grow"
     :class="{ 'px-3': space === 'small', 'px-[15px]': space !== 'small' }"
   >
-    <h2 class="font-medium mb-4 text-center">{{ title }}</h2>
+    <h2 class="font-medium mb-4 text-center text-[#e0e0d1]">{{ title }}</h2>
 
     <!-- Заголовки -->
-    <div class="flex items-center justify-between text-sm text-gray-400 mb-3.5">
-      <h3 v-for="item in data.titles" :key="item">{{ item }}</h3>
+    <div :class="`${gridClass} mb-3.5`">
+      <div
+        v-for="(item, idx) in data.titles"
+        :key="item"
+        :class="idx == 3 ? 'ml-auto' : ''"
+      >
+        <h3 class="text-[11px] text-[#4d5166] font-medium">
+          {{ item }}
+        </h3>
+      </div>
     </div>
 
     <!-- Элементы данных -->
     <div class="flex flex-col gap-3.5">
-      <div class="flex items-center justify-between" v-for="item in data.items">
+      <div :class="gridClass" v-for="item in data.items">
         <template v-for="(entity, key) in item" :key="key">
           <component :is="renderEntityComponent(key, entity)" />
         </template>
@@ -28,7 +36,7 @@ import Tag from "../ui/Tag/Tag.vue";
 import { h } from "vue";
 import type { OrderBlockProps } from "./interfaces";
 
-const props = withDefaults(defineProps<OrderBlockProps>(), {
+withDefaults(defineProps<OrderBlockProps>(), {
   space: "base",
 });
 
@@ -43,7 +51,7 @@ const renderEntityComponent = (key, entity) => {
     finance: () =>
       h("div", { class: `${commonClass} flex items-center gap-1.5` }, [
         h(SvgIcon, { name: "gift" }),
-        entity > 0
+        entity.substring
           ? h(Tag, {}, { default: () => entity })
           : h("div", { class: "font-medium text-sm" }, entity),
       ]),
@@ -51,20 +59,24 @@ const renderEntityComponent = (key, entity) => {
     total: () => h("div", { class: commonClass }, entity),
 
     orderAmount: () =>
-      h(FilledButton, {
-        text: entity,
-        type: "green",
-        class: "px-9",
-      }),
+      h("div", { class: "ml-auto" }, [
+        h(FilledButton, {
+          text: entity,
+          type: "green",
+          class: "px-9 w-fit",
+        }),
+      ]),
 
     hasBtn: () =>
       entity
-        ? h(FilledButton, {
-            text: "Отменить",
-            type: "red",
-            smallText: true,
-            class: "px-[13px]",
-          })
+        ? h("div", { class: "ml-auto" }, [
+            h(FilledButton, {
+              text: "Отменить",
+              type: "red",
+              smallText: true,
+              class: "px-[13px] w-fit",
+            }),
+          ])
         : null,
 
     amount: () => h("div", { class: `${commonClass} font-medium` }, entity),
@@ -76,7 +88,7 @@ const renderEntityComponent = (key, entity) => {
       h(
         "div",
         {
-          class: `${commonClass} ${entity < 0 ? "text-[#f6465d]" : ""}`,
+          class: `${commonClass} ${entity.substring ? "text-[#f6465d]" : ""}`,
         },
         entity
       ),
