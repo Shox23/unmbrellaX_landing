@@ -1,7 +1,7 @@
 <template>
   <div
     class="py-3 bg-[#181a20] rounded-(--rounded-base) grow"
-    :class="{ 'px-3': space === 'small', 'px-[15px]': space !== 'small' }"
+    :class="{ 'px-3': space === 'small', 'pl-6 pr-[17px]' : space !== 'small' }"
   >
     <h2 class="font-medium mb-4 text-center text-[#e0e0d1]">{{ title }}</h2>
 
